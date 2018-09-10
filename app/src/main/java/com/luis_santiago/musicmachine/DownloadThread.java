@@ -1,6 +1,7 @@
 package com.luis_santiago.musicmachine;
 
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 /**
@@ -18,4 +19,5 @@ public class DownloadThread extends Thread {
         mHandler = new DownloadHandler();
         Looper.loop();
     }
+
 }

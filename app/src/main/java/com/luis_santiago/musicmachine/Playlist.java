@@ -6,5 +6,5 @@ package com.luis_santiago.musicmachine;
 
 class Playlist {
 
-    static String songs [] = {"Call out my name" , "Better" , "River" , "Ti'll I collapse"};
+    public static String[] songs = {"He’s the Greatest Dancer", "Cut the Cake", "The Groove Line", "Stayin’ Alive", "Give Up the Funk"};
 }

@@ -15,6 +15,7 @@ public class DownloadHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         downloadSong(msg.obj.toString());
+
     }
 
     private void downloadSong(String song){

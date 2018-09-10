@@ -1,5 +1,7 @@
 package com.luis_santiago.musicmachine;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private Button mDownloadButton;
     private final String TAG = MainActivity.class.getSimpleName();
 
@@ -17,21 +20,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DownloadThread thread = new DownloadThread();
-        thread.setName("Download thread");
-        thread.start();
         mDownloadButton = findViewById(R.id.downloadButton);
 
-        mDownloadButton.setOnClickListener(view->{
-            Toast.makeText(this , "Downloading" , Toast.LENGTH_SHORT).show();
-            //send messages to handler for processing
-            for (String song  : Playlist.songs){
-                Message message = Message.obtain();
-                message.obj = song;
-                thread.mHandler.sendMessage(message);
+
+
+        mDownloadButton.setOnClickListener(view -> {
+            Toast.makeText(this, "Downloading", Toast.LENGTH_SHORT).show();
+            for(String song  : Playlist.songs){
+                Intent intent = new Intent(MainActivity.this , DownloadService.class);
+                intent.putExtra(Constants.KEY_SONG , song);
+                startService(intent);
             }
         });
-
 
     }
 
