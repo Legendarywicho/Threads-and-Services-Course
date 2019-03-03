@@ -21,8 +21,8 @@ public class DownloadService extends Service {
         thread.setName("Download name");
         thread .start();
         while (thread.mHandler == null) {}
-
         mHandler = thread.mHandler;
+        mHandler.setService(this);
     }
 
     @Nullable
@@ -36,6 +36,7 @@ public class DownloadService extends Service {
         String song = intent.getStringExtra(Constants.KEY_SONG);
         Message message = Message.obtain();
         message.obj = song;
+        message.arg1 = startId;
         mHandler.sendMessage(message);
         return Service.START_REDELIVER_INTENT;
     }
